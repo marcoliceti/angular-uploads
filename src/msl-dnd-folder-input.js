@@ -12,7 +12,6 @@ msl_upload.directive('mslDndFolderInput', function () {
 			if (!scope[handler]) throw 'msl-dnd-folder-input: The specified handler doesn\'t exist in your scope';
 
 			function exploreFolder(item) {
-				var handler = attributes['mslDndFolderInput'];
 				if (item.isFile) {
 					item.file(function (file) {
 						scope.$apply(function () { scope[handler]([file]); });

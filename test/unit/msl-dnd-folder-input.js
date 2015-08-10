@@ -37,15 +37,21 @@ describe('Directive msl-dnd-folder-input', function() {
 	}
 
 	it('adds a \'msl-drag-over\' class on \'dragover\' events', function() {
-		var element = $compile('<div msl-dnd-folder-input></div>')($rootScope);
+		var handler = 'handler';
+		$rootScope.handler = function () {};
+		var element = $compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
 		$rootScope.$digest();
+
 		element.triggerHandler('dragover');
 		expect(element.hasClass('msl-drag-over')).toBeTruthy();
 	});
 
 	it('removes the \'msl-drag-over\' class on \'dragleave\' events', function() {
-		var element = $compile('<div msl-dnd-folder-input></div>')($rootScope);
+		var handler = 'handler';
+		$rootScope.handler = function () {};
+		var element = $compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
 		$rootScope.$digest();
+
 		element.triggerHandler('dragover');
 		expect(element.hasClass('msl-drag-over')).toBeTruthy();
 		element.triggerHandler('dragleave');
@@ -53,13 +59,16 @@ describe('Directive msl-dnd-folder-input', function() {
 	});
 
 	it('removes the \'msl-drag-over\' class on \'drop\' events', function() {
-		var element = $compile('<div msl-dnd-folder-input></div>')($rootScope);
+		var handler = 'handler';
+		$rootScope.handler = function () {};
+		var element = $compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
 		$rootScope.$digest();
+
 		element.triggerHandler('dragover');
 		expect(element.hasClass('msl-drag-over')).toBeTruthy();
 		element.triggerHandler($.Event('drop', {
 			dataTransfer: {
-				files: []
+				items: []
 			}
 		}));
 		expect(element.hasClass('msl-drag-over')).toBeFalsy();
@@ -67,9 +76,10 @@ describe('Directive msl-dnd-folder-input', function() {
 
 	if (folder_upload_available) it('allows to bind a handler for \'drop\' events', function() {
 		var handler = 'handler';
-		var element = $compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
 		$rootScope.handler = function () {};
+		var element = $compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
 		$rootScope.$digest();
+
 		spyOn($rootScope, handler);
 		var items = [mockWebkitFile('foo')];
 		element.triggerHandler($.Event('drop', {
@@ -82,9 +92,10 @@ describe('Directive msl-dnd-folder-input', function() {
 
 	if (folder_upload_available) it('allows you to select all the content inside a folder', function() {
 		var handler = 'handler';
-		var element = $compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
 		$rootScope.handler = function () {};
+		var element = $compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
 		$rootScope.$digest();
+
 		spyOn($rootScope, handler);
 		var a_dir = mockWebkitDirectory('a_dir');
 		a_dir.content.push(mockWebkitFile('foo'));
@@ -101,9 +112,10 @@ describe('Directive msl-dnd-folder-input', function() {
 
 	if (folder_upload_available) it('works even with multiple folders', function() {
 		var handler = 'handler';
-		var element = $compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
 		$rootScope.handler = function () {};
+		var element = $compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
 		$rootScope.$digest();
+
 		spyOn($rootScope, handler);
 		var a_dir = mockWebkitDirectory('a_dir');
 		a_dir.content.push(mockWebkitFile('foo'));
@@ -123,9 +135,10 @@ describe('Directive msl-dnd-folder-input', function() {
 
 	if (folder_upload_available) it('works even with a mix of files and folders', function() {
 		var handler = 'handler';
-		var element = $compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
 		$rootScope.handler = function () {};
+		var element = $compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
 		$rootScope.$digest();
+
 		spyOn($rootScope, handler);
 		var a_dir = mockWebkitDirectory('a_dir');
 		a_dir.content.push(mockWebkitFile('foo'));
@@ -143,9 +156,10 @@ describe('Directive msl-dnd-folder-input', function() {
 
 	if (folder_upload_available) it('recursively selects all files inside the folder', function() {
 		var handler = 'handler';
-		var element = $compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
 		$rootScope.handler = function () {};
+		var element = $compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
 		$rootScope.$digest();
+
 		spyOn($rootScope, handler);
 		var a_dir = mockWebkitDirectory('a_dir');
 		var another_dir = mockWebkitDirectory('another_dir');
@@ -162,9 +176,10 @@ describe('Directive msl-dnd-folder-input', function() {
 
 	if (!folder_upload_available) it('can behave like \'msl-dnd-file-input\' when the browser lacks folder upload support', function() {
 		var handler = 'handler';
-		var element = $compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
 		$rootScope.handler = function () {};
+		var element = $compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
 		$rootScope.$digest();
+
 		spyOn($rootScope, handler);
 		element.triggerHandler($.Event('drop', {
 			dataTransfer: {
@@ -174,23 +189,19 @@ describe('Directive msl-dnd-folder-input', function() {
 		expect($rootScope[handler]).toHaveBeenCalledWith(['foo', 'bar', 'baz']);
 	});
 
-	it('doesn\'t complain if you don\'t provide a handler', function() {
-		var element = $compile('<div msl-dnd-folder-input></div>')($rootScope);
-		$rootScope.$digest();
-		function triggerDrop() {
-			element.triggerHandler('drop');
+	it('throws if you don\'t provide a handler', function() {
+		function compileWithoutHandler() {
+			$compile('<div msl-dnd-folder-input></div>')($rootScope);
 		}
-		expect(triggerDrop).not.toThrow();
+		expect(compileWithoutHandler).toThrow();
 	});
 
-	it('doesn\'t complain if you provide a missing handler', function() {
-		var handler = 'handler';
-		var element = $compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
-		$rootScope[handler] = undefined;
-		$rootScope.$digest();
-		function triggerDrop() {
-			element.triggerHandler('drop');
+	it('throws if you provide a missing handler', function() {
+		function compileWithMissingHandler() {
+			var handler = 'handler';
+			$rootScope[handler] = undefined;
+			$compile('<div msl-dnd-folder-input="' + handler + '"></div>')($rootScope);
 		}
-		expect(triggerDrop).not.toThrow();
+		expect(compileWithMissingHandler).toThrow();
 	});
 });
