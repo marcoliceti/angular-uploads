@@ -9,6 +9,7 @@
   "author": "Marco Liceti",
   "devDependencies": {
     "angular-mocks": "^1.4.3",
+    "http-server": "^0.8.0",
     "jasmine-core": "^2.3.4",
     "jasmine-jquery": "^2.1.0",
     "jquery": "^2.1.4",
