@@ -7,6 +7,10 @@ msl_upload.directive('mslDndFolderInput', function () {
 	return {
 		restrict: 'A',
 		link: function (scope, element, attributes) {
+			var handler = attributes['mslDndFolderInput'];
+			if (!handler) throw 'msl-dnd-folder-input: You should specify a folder selection handler';
+			if (!scope[handler]) throw 'msl-dnd-folder-input: The specified handler doesn\'t exist in your scope';
+
 			function exploreFolder(item) {
 				var handler = attributes['mslDndFolderInput'];
 				if (item.isFile) {
@@ -34,18 +38,15 @@ msl_upload.directive('mslDndFolderInput', function () {
 			element.bind('drop', function (event) {
 				event.preventDefault();
 				element.removeClass('msl-drag-over');
-				var handler = attributes['mslDndFolderInput'];
-				if (scope[handler]) {
-					if (folderUploadAvailable()) {
-						var roots = event.dataTransfer.items;
-						for (var i = 0; i < roots.length; i++) {
-							var root = roots[i].webkitGetAsEntry();
-							exploreFolder(root);
-						}
-					} else {
-						var files = event.dataTransfer.files;
-						scope.$apply(function () { scope[handler](files); });
+				if (folderUploadAvailable()) {
+					var roots = event.dataTransfer.items;
+					for (var i = 0; i < roots.length; i++) {
+						var root = roots[i].webkitGetAsEntry();
+						exploreFolder(root);
 					}
+				} else {
+					var files = event.dataTransfer.files;
+					scope.$apply(function () { scope[handler](files); });
 				}
 			});
 		}
