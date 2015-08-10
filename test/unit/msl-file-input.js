@@ -33,12 +33,7 @@ describe('Directive msl-file-input', function() {
 		expect(element.css('position')).toEqual('relative');
 		var input = element.children().eq(-1);
 		expect(input.attr('type')).toEqual('file');
-		expect(input.css('position')).toEqual('absolute');
-		expect(input.css('top')).toEqual('0px');
-		expect(input.css('left')).toEqual('0px');
-		expect(input.css('width')).toEqual('100%');
-		expect(input.css('height')).toEqual('100%');
-		expect(input.css('opacity')).toEqual('0');
+		expect(input.css('display')).toEqual('none');
 	});
 
 	it('allows to bind a handler for the \'change\' event of the appended input', function() {

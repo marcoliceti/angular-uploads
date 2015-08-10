@@ -14,18 +14,12 @@ describe('Directive msl-folder-input', function() {
 
 	var folder_upload_available = folderUploadAvailable();
 
-	if (folder_upload_available) it('appends a hidden file input filling its parent', function() {
+	if (folder_upload_available) it('appends a hidden file input', function() {
 		var element = $compile('<button msl-folder-input></button>')($rootScope);
 		$rootScope.$digest();
-		expect(element.css('position')).toEqual('relative');
 		var input = element.children().eq(-1);
 		expect(input.prop('type')).toEqual('file');
-		expect(input.css('position')).toEqual('absolute');
-		expect(input.css('top')).toEqual('0px');
-		expect(input.css('left')).toEqual('0px');
-		expect(input.css('width')).toEqual('100%');
-		expect(input.css('height')).toEqual('100%');
-		expect(input.css('opacity')).toEqual('0');
+		expect(input.css('display')).toEqual('none');
 	});
 
 	if (folder_upload_available) it('appends a hidden file input with \'webkitdirectory\' attribute (that enables folder selection)', function() {
