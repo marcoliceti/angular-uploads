@@ -8,29 +8,34 @@ describe('Directive msl-file-input', function() {
 	}));
 
 	it('removes the \'multiple\' attribute if present', function() {
-		var element = $compile('<button msl-file-input multiple></button>')($rootScope);
+		var handler = 'handler';
+		$rootScope[handler] = function () {};
+		var element = $compile('<button msl-file-input="' + handler + '" multiple></button>')($rootScope);
 		$rootScope.$digest();
 		expect(element.attr('multiple')).toBeUndefined();
 	});
 
 	it('passes the \'multiple\' attribute (if present) to the appended input', function() {
-		var element = $compile('<button msl-file-input multiple></button>')($rootScope);
+		var handler = 'handler';
+		$rootScope[handler] = function () {};
+		var element = $compile('<button msl-file-input="' + handler + '" multiple></button>')($rootScope);
 		$rootScope.$digest();
 		expect(element.attr('multiple')).toBeFalsy();
 		var input = element.children().eq(-1);
 		expect(input.attr('multiple')).toBeTruthy();
 
-		element = $compile('<button msl-file-input></button>')($rootScope);
+		var element = $compile('<button msl-file-input="' + handler + '"></button>')($rootScope);
 		$rootScope.$digest();
 		expect(element.attr('multiple')).toBeFalsy();
 		input = element.children().eq(-1);
 		expect(input.attr('multiple')).toBeFalsy();
 	});
 
-	it('appends a hidden file input filling its parent', function() {
-		var element = $compile('<button msl-file-input></button>')($rootScope);
+	it('appends a hidden file input', function() {
+		var handler = 'handler';
+		$rootScope[handler] = function () {};
+		var element = $compile('<button msl-file-input="' + handler + '"></button>')($rootScope);
 		$rootScope.$digest();
-		expect(element.css('position')).toEqual('relative');
 		var input = element.children().eq(-1);
 		expect(input.attr('type')).toEqual('file');
 		expect(input.css('display')).toEqual('none');
@@ -55,30 +60,26 @@ describe('Directive msl-file-input', function() {
 		expect($rootScope[handler]).toHaveBeenCalledWith(['foo', 'bar', 'baz']);
 	});
 
-	it('doesn\'t complain if you forget to provide a handler', function() {
-		var element = $compile('<button msl-file-input></button>')($rootScope);
-		$rootScope.$digest();
-		var input = element.children().eq(-1);
-		function triggerChange() {
-			input.triggerHandler('change');
+	it('throws if you forget to provide a handler', function() {
+		function compileWithoutHandler() {
+			$compile('<button msl-file-input></button>')($rootScope);
 		}
-		expect(triggerChange).not.toThrow();
+		expect(compileWithoutHandler).toThrow();
 	});
 
-	it('doesn\'t complain if you provide a missing handler', function() {
+	it('throws if you provide a missing handler', function() {
+		function compileMissingHandler() {
+			var handler = 'handler';
+			$rootScope[handler] = undefined;
+			var element = $compile('<button msl-file-input="' + handler + '"></button>')($rootScope);
+		}
+		expect(compileMissingHandler).toThrow();
+	});
+
+	it('when the container is clicked, triggers a click on the appended input', function() {
 		var handler = 'handler';
-		$rootScope[handler] = undefined;
+		$rootScope[handler] = function () {};
 		var element = $compile('<button msl-file-input="' + handler + '"></button>')($rootScope);
-		$rootScope.$digest();
-		var input = element.children().eq(-1);
-		function triggerChange() {
-			input.triggerHandler('change');
-		}
-		expect(triggerChange).not.toThrow();
-	});
-
-	it('when the container is clicked, triggers a click on the appended input (IE compatibility)', function() {
-		var element = $compile('<button msl-file-input></button>')($rootScope);
 		$rootScope.$digest();
 		var input = element.children().eq(-1);
 		var click_on_input = spyOnEvent(input, 'click');
