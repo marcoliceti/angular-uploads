@@ -25,7 +25,6 @@ describe('Directive msl-file-input', function() {
 		expect(files.count()).toEqual(0);
 
 		var a_file = path.resolve(__dirname, '../../demo/msl-file-input/index.html');
-		console.log(a_file);
 		browser.driver.executeScript(function () {
 			document.getElementsByTagName('input')[0].style.display = 'inline';
 		});
