@@ -15,22 +15,4 @@ describe('Directive msl-file-input', function() {
 		expect(hidden_input.getAttribute('multiple')).not.toBeNull();
 	});
 
-	it('should allow file selection', function() {
-		var button = element(by.css('button'));
-		var hidden_input = button.element(by.css('input'));
-		var files_list = element(by.css('ul'));
-		var files = files_list.all(by.css('li'));
-
-		expect(files_list.isPresent()).toEqual(true);
-		expect(files.count()).toEqual(0);
-
-		var a_file = path.resolve(__dirname, '../../demo/msl-file-input/index.html');
-		browser.driver.executeScript(function () {
-			document.getElementsByTagName('input')[0].style.display = 'inline';
-		});
-		hidden_input.sendKeys(a_file);
-		expect(files.count()).toEqual(1);
-		expect(files.first().getText()).toEqual('index.html');
-	});
-
 });
