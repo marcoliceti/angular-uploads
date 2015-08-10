@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" ng-app="mslFileInputDemoApp">
+<head>
+	<meta charset="utf8">
+	<title>msl-file-input Demo</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body ng-controller="DemoController">
+	<button msl-file-input="fileSelectionHandler" multiple>Select files</button>
+	<ul ng-show="files.length > 0">
+		<li ng-repeat="file in files">
+			<span>{{file.name}}</span>
+		</li>
+	</ul>
+	<!-- JavaScript -->
+	<script src="../../node_modules/angular/angular.js"></script>
+	<script src="../../src/msl-upload.js"></script>
+	<script src="../../src/msl-file-input.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>

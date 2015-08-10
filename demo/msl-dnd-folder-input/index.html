@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" ng-app="mslDndFolderInputDemoApp">
+<head>
+	<meta charset="utf8">
+	<title>msl-dnd-folder-input Demo</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body ng-controller="DemoController">
+	<div msl-dnd-folder-input="fileSelectionHandler">Drag folder here</div>
+	<ul ng-show="files.length > 0">
+		<li ng-repeat="file in files">
+			<span>{{file.name}}</span>
+		</li>
+	</ul>
+	<!-- JavaScript -->
+	<script src="../../node_modules/angular/angular.js"></script>
+	<script src="../../src/msl-upload.js"></script>
+	<script src="../../src/msl-dnd-folder-input.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>

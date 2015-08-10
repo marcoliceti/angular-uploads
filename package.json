@@ -1,0 +1,27 @@
+{
+  "name": "msl-upload",
+  "version": "0.0.0",
+  "description": "A bunch of useful Angular directives for modern upload UIs.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcoliceti/ng_upload_goodies.git"
+  },
+  "author": "Marco Liceti",
+  "devDependencies": {
+    "angular-mocks": "^1.4.3",
+    "jasmine-core": "^2.3.4",
+    "jasmine-jquery": "^2.1.0",
+    "jquery": "^2.1.4",
+    "karma": "^0.13.3",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-ie-launcher": "^0.2.0",
+    "karma-jasmine": "^0.3.6",
+    "karma-safari-launcher": "^0.1.1"
+  },
+  "dependencies": {
+    "angular": "^1.4.3",
+    "install": "^0.1.8",
+    "npm": "^2.13.3"
+  }
+}
