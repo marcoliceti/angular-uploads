@@ -7,10 +7,9 @@ msl_upload.directive('mslFileInput', function () {
 			if (!scope[handler]) throw 'msl-file-input: The specified handler doesn\'t exist in your scope';
 
 			element.removeAttr('multiple');
-			element.css('position', 'relative');
 			element.append('<input type="file" ' + ( attributes['multiple'] ? 'multiple' : '' ) + ' style="display: none;">');
 			var hidden_file_input = element.children().eq(-1);
-			if (scope[handler]) hidden_file_input.bind('change', function (event) {
+			hidden_file_input.bind('change', function (event) {
 				var files = event.target.files;
 				scope.$apply(function () { 
 					scope[handler](files);

@@ -7,11 +7,14 @@ msl_upload.directive('mslFolderInput', function () {
 	return {
 		restrict: 'A',
 		link: function (scope, element, attributes) {
+			var handler = attributes['mslFolderInput'];
+			if (!handler) throw 'msl-folder-input: You should specify a folder selection handler';
+			if (!scope[handler]) throw 'msl-folder-input: The specified handler doesn\'t exist in your scope';
+
 			if (folderUploadAvailable()) {
 				element.append('<input type="file" webkitdirectory style="display: none;">');
 				var hidden_file_input = element.children().eq(-1);
-				var handler = attributes['mslFolderInput'];
-				if (scope[handler]) hidden_file_input.bind('change', function (event) {
+				hidden_file_input.bind('change', function (event) {
 					var files = event.target.files;
 					scope.$apply(function () { 
 						scope[handler](files);
