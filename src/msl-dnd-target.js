@@ -15,7 +15,7 @@ msl_upload.directive('mslDndTarget', function () {
 				element.removeClass('msl-drag-over');
 				var handler = attributes['mslDndTarget'];
 				if (scope[handler]) {
-					var data_as_string = event.dataTransfer.getData('application/json');
+					var data_as_string = event.dataTransfer.getData('text');
 					var data = JSON.parse(data_as_string);
 					scope.$apply(function () {
 						scope[handler](data);

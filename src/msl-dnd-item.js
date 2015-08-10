@@ -7,7 +7,7 @@ msl_upload.directive('mslDndItem', function () {
 			var binded_object = scope[binded_object_name];
 			if (binded_object) element.bind('dragstart', function (event) {
 				var as_json = JSON.stringify(binded_object);
-				event.dataTransfer.setData('application/json', as_json);
+				event.dataTransfer.setData('text', as_json);
 			});
 		}
 	};

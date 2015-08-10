@@ -19,7 +19,7 @@ describe('Directive msl-dnd-item', function() {
 		element.triggerHandler($.Event('dragstart', {
 			dataTransfer: data_transfer
 		}));
-		expect(data_transfer.setData).toHaveBeenCalledWith('application/json', JSON.stringify(foo));
+		expect(data_transfer.setData).toHaveBeenCalledWith('text', JSON.stringify(foo));
 	});
 
 	it('won\'t complain if you don\'t provide a scope value', function() {
