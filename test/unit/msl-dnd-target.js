@@ -8,15 +8,21 @@ describe('Directive msl-dnd-target', function() {
 	}));
 
 	it('on \'dragover\' adds a \'msl-drag-over\' class', function() {
-		var element = $compile('<div msl-dnd-target></div>')($rootScope);
+		var handler = 'handler';
+		$rootScope[handler] = function () {};
+		var element = $compile('<div msl-dnd-target="' + handler + '"></div>')($rootScope);
 		$rootScope.$digest();
+
 		element.triggerHandler('dragover');
 		expect(element.hasClass('msl-drag-over')).toBeTruthy();
 	});
 
 	it('on \'dragleave\' removes the \'msl-drag-over\' class', function() {
-		var element = $compile('<div msl-dnd-target></div>')($rootScope);
+		var handler = 'handler';
+		$rootScope[handler] = function () {};
+		var element = $compile('<div msl-dnd-target="' + handler + '"></div>')($rootScope);
 		$rootScope.$digest();
+
 		element.triggerHandler('dragover');
 		expect(element.hasClass('msl-drag-over')).toBeTruthy();
 		element.triggerHandler('dragleave');
@@ -24,8 +30,11 @@ describe('Directive msl-dnd-target', function() {
 	});
 
 	it('on \'drop\' removes the \'msl-drag-over\' class', function() {
-		var element = $compile('<div msl-dnd-target></div>')($rootScope);
+		var handler = 'handler';
+		$rootScope[handler] = function () {};
+		var element = $compile('<div msl-dnd-target="' + handler + '"></div>')($rootScope);
 		$rootScope.$digest();
+
 		element.triggerHandler('dragover');
 		expect(element.hasClass('msl-drag-over')).toBeTruthy();
 		element.triggerHandler($.Event('drop', {
@@ -37,8 +46,11 @@ describe('Directive msl-dnd-target', function() {
 	});
 
 	it('on \'drop\' removes the \'msl-drag-over\' class', function() {
-		var element = $compile('<div msl-dnd-target></div>')($rootScope);
+		var handler = 'handler';
+		$rootScope[handler] = function () {};
+		var element = $compile('<div msl-dnd-target="' + handler + '"></div>')($rootScope);
 		$rootScope.$digest();
+
 		element.triggerHandler('dragover');
 		expect(element.hasClass('msl-drag-over')).toBeTruthy();
 		element.triggerHandler($.Event('drop', {
@@ -51,9 +63,10 @@ describe('Directive msl-dnd-target', function() {
 
 	it('on \'drop\' invokes the provided handler', function() {
 		var handler = 'handler';
-		var element = $compile('<div msl-dnd-target="' + handler + '"></div>')($rootScope);
 		$rootScope[handler] = function () {};
+		var element = $compile('<div msl-dnd-target="' + handler + '"></div>')($rootScope);
 		$rootScope.$digest();
+
 		spyOn($rootScope, handler);
 		var foo = { bar: 'bar' };
 		element.triggerHandler($.Event('drop', {
@@ -64,33 +77,19 @@ describe('Directive msl-dnd-target', function() {
 		expect($rootScope[handler]).toHaveBeenCalledWith({ bar: 'bar' });
 	});
 
-	it('won\'t complain if you don\'t provide a handler', function() {
-		var element = $compile('<div msl-dnd-target></div>')($rootScope);
-		$rootScope.$digest();
-		function triggerDrop() {
-			var foo = { bar: 'bar' };
-			element.triggerHandler($.Event('drop', {
-				dataTransfer: {
-					getData: function () { return JSON.stringify(foo); }
-				}
-			}));
+	it('throws if you don\'t provide a handler', function() {
+		function compileWithoutHandler() {
+			$compile('<div msl-dnd-target></div>')($rootScope);
 		}
-		expect(triggerDrop).not.toThrow();
+		expect(compileWithoutHandler).toThrow();
 	});
 
-	it('won\'t complain if you provide a missing handler', function() {
-		var handler = 'handler';
-		var element = $compile('<div msl-dnd-target="' + handler + '"></div>')($rootScope);
-		$rootScope[handler] = undefined;
-		$rootScope.$digest();
-		function triggerDrop() {
-			var foo = { bar: 'bar' };
-			element.triggerHandler($.Event('drop', {
-				dataTransfer: {
-					getData: function () { return JSON.stringify(foo); }
-				}
-			}));
+	it('throws if you provide a missing handler', function() {
+		function compileWithMissingHandler() {
+			var handler = 'handler';
+			$rootScope[handler] = undefined;
+			$compile('<div msl-dnd-target="' + handler + '"></div>')($rootScope);
 		}
-		expect(triggerDrop).not.toThrow();
+		expect(compileWithMissingHandler).toThrow();
 	});
 });
