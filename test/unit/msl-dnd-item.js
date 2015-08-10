@@ -22,33 +22,18 @@ describe('Directive msl-dnd-item', function() {
 		expect(data_transfer.setData).toHaveBeenCalledWith('text', JSON.stringify(foo));
 	});
 
-	it('won\'t complain if you don\'t provide a scope value', function() {
-		var foo = { bar: 'bar' };
-		$rootScope.foo = foo;
-		var element = $compile('<div msl-dnd-item></div>')($rootScope);
-		$rootScope.$digest();
-		var data_transfer = {
-			setData: function () {}
-		};
-		spyOn(data_transfer, 'setData');
-		element.triggerHandler($.Event('dragstart', {
-			dataTransfer: data_transfer
-		}));
-		expect(data_transfer.setData).not.toHaveBeenCalled();
+	it('throws if you don\'t provide a scope variable', function() {
+		function compileWithoutVariable() {
+			$compile('<div msl-dnd-item></div>')($rootScope);
+		}
+		expect(compileWithoutVariable).toThrow();
 	});
 
-	it('won\'t complain if you provide a missing scope value', function() {
-		var foo = { bar: 'bar' };
-		$rootScope.foo = undefined;
-		var element = $compile('<div msl-dnd-item></div>')($rootScope);
-		$rootScope.$digest();
-		var data_transfer = {
-			setData: function () {}
-		};
-		spyOn(data_transfer, 'setData');
-		element.triggerHandler($.Event('dragstart', {
-			dataTransfer: data_transfer
-		}));
-		expect(data_transfer.setData).not.toHaveBeenCalled();
+	it('throws if you provide a missing scope variable', function() {
+		function compileWithMissingVariable() {
+			$rootScope.foo = undefined;
+			$compile('<div msl-dnd-item="foo"></div>')($rootScope);
+		}
+		expect(compileWithMissingVariable).toThrow();
 	});
 });
