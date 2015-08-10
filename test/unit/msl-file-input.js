@@ -68,12 +68,12 @@ describe('Directive msl-file-input', function() {
 	});
 
 	it('throws if you provide a missing handler', function() {
-		function compileMissingHandler() {
+		function compileWithMissingHandler() {
 			var handler = 'handler';
 			$rootScope[handler] = undefined;
-			var element = $compile('<button msl-file-input="' + handler + '"></button>')($rootScope);
+			$compile('<button msl-file-input="' + handler + '"></button>')($rootScope);
 		}
-		expect(compileMissingHandler).toThrow();
+		expect(compileWithMissingHandler).toThrow();
 	});
 
 	it('when the container is clicked, triggers a click on the appended input', function() {
@@ -81,6 +81,7 @@ describe('Directive msl-file-input', function() {
 		$rootScope[handler] = function () {};
 		var element = $compile('<button msl-file-input="' + handler + '"></button>')($rootScope);
 		$rootScope.$digest();
+		
 		var input = element.children().eq(-1);
 		var click_on_input = spyOnEvent(input, 'click');
 		element.triggerHandler('click');

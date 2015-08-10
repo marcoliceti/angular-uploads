@@ -62,12 +62,12 @@ describe('Directive msl-folder-input', function() {
 	});
 
 	it('throws if you provide a missing handler', function() {
-		function compileWithoutHandler() {
+		function compileWithMissingHandler() {
 			var handler = 'handler';
 			$rootScope[handler] = undefined;
-			var element = $compile('<button msl-folder-input="' + handler + '"></button>')($rootScope);
+			$compile('<button msl-folder-input="' + handler + '"></button>')($rootScope);
 		}
-		expect(compileWithoutHandler).toThrow();
+		expect(compileWithMissingHandler).toThrow();
 	});
 
 	if (folder_upload_available) it('when the container is clicked, triggers a click on the appended input (IE compatibility)', function() {
