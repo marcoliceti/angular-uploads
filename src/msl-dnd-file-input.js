@@ -2,6 +2,10 @@ msl_upload.directive('mslDndFileInput', function () {
 	return {
 		restrict: 'A',
 		link: function (scope, element, attributes) {
+			var handler = attributes['mslDndFileInput'];
+			if (!handler) throw 'msl-dnd-file-input: You should specify a file selection handler';
+			if (!scope[handler]) throw 'msl-dnd-file-input: The specified handler doesn\'t exist in your scope';
+
 			element.bind('dragover', function (event) {
 				event.preventDefault();
 				element.addClass('msl-drag-over');
@@ -14,7 +18,7 @@ msl_upload.directive('mslDndFileInput', function () {
 				element.removeClass('msl-drag-over');
 				var handler = attributes['mslDndFileInput'];
 				var files = event.dataTransfer.files;
-				if (scope[handler]) scope.$apply(function () { scope[handler](files); });
+				scope.$apply(function () { scope[handler](files); });
 			});
 		}
 	};
