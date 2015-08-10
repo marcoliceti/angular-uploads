@@ -16,6 +16,9 @@ TO-DO
 
 ## msl-dnd-folder-input
 
+**Note:** Demo App won't work if served from `file:///`.
+You'll need an HTTP server.
+
 TO-DO
 
 ## msl-dnd-item & msl-dnd-target
