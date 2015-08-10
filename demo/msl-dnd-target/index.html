@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" ng-app="mslDndTargetDemoApp">
+<head>
+	<meta charset="utf8">
+	<title>msl-dnd-target Demo</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body ng-controller="DemoController">
+	<div msl-dnd-item="john">
+		<div ng-repeat="(k, v) in john">
+			<strong>{{k}}:</strong> {{v}}
+		</div>
+	</div>
+	<div msl-dnd-item="jane">
+		<div ng-repeat="(k, v) in jane">
+			<strong>{{k}}:</strong> {{v}}
+		</div>
+	</div>
+	<div msl-dnd-target="addPerson">
+		<p>Drag person here</p>
+		<table>
+			<tr ng-repeat="person in persons">
+				<td ng-repeat="(_, v) in person">{{v}}</td>
+			</tr>
+		</table>
+	</div>
+	<!-- JavaScript -->
+	<script src="../../node_modules/angular/angular.js"></script>
+	<script src="../../src/msl-upload.js"></script>
+	<script src="../../src/msl-dnd-item.js"></script>
+	<script src="../../src/msl-dnd-target.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>
