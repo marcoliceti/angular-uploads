@@ -1,0 +1,6 @@
+src/
+test/
+demo/
+Gruntfile.js
+karma-conf.js
+.npmignore
