@@ -119,7 +119,7 @@ $scope.myHandler = function (files) {
 
 ### What `msl-dnd-item` and `msl-dnd-target` do
 
-`msl-dnd-item` makes an element _draggable_, and allow to _link_ that element to a scope variable.
+`msl-dnd-item` makes an element _draggable_, and allows to _link_ that element to a scope variable.
 `msl-dnd-target` allow to specify a handler function (exposed through your scope) that will be invoked
 when the `msl-dnd-item` will be dropped on that `msl-dnd-target`. This function will receive as an
 argument the same variable linked to the `msl-dnd-item`.
@@ -138,10 +138,10 @@ Example:
 `Javascript / AngularJS Controller`
 
 ``` javascript
-$scope.foo = 'foo';
+$scope.foo = 'bar';
 
-$scope.myHandler = function (files) {
-  // Do something with the files
+$scope.myHandler = function (arg) {
+  console.log(arg); // will print 'bar'
 }
 ```
 
