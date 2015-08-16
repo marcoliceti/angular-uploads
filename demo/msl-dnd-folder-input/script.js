@@ -1,4 +1,4 @@
-var app = angular.module('mslDndFolderInputDemoApp', ['msl.upload']);
+var app = angular.module('mslDndFolderInputDemoApp', ['msl.uploads']);
 
 app.controller('DemoController', ['$scope', function ($scope) {
 	$scope.files = [];

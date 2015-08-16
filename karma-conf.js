@@ -19,7 +19,7 @@ module.exports = function(config) {
       'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      'src/msl-upload.js',
+      'src/msl-uploads.js',
       'src/msl-file-input.js',
       'test/unit/msl-file-input.js',
       'src/msl-folder-input.js',

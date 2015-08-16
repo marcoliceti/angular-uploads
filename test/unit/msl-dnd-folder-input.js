@@ -1,7 +1,7 @@
 describe('Directive msl-dnd-folder-input', function() {
 	var $compile, $rootScope;
 
-	beforeEach(module('msl.upload'));
+	beforeEach(module('msl.uploads'));
 	beforeEach(inject(function(_$compile_, _$rootScope_) {
 		$compile = _$compile_;
 		$rootScope = _$rootScope_;

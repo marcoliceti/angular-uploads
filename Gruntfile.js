@@ -12,7 +12,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: [
-          'src/msl-upload.js',
+          'src/msl-uploads.js',
           'src/msl-file-input.js',
           'src/msl-folder-input.js',
           'src/msl-dnd-file-input.js',

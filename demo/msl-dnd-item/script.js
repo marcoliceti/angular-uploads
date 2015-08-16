@@ -1,4 +1,4 @@
-var app = angular.module('mslDndItemDemoApp', ['msl.upload']);
+var app = angular.module('mslDndItemDemoApp', ['msl.uploads']);
 
 app.controller('DemoController', ['$scope', function ($scope) {
 	$scope.john = {
