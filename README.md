@@ -2,6 +2,10 @@
 
 A bunch of [AngularJS](https://angularjs.org/) directives for beautiful upload UIs.
 
+## Showcase
+
+You can see the directives in action [here](https://marcoliceti.github.io/angular-uploads/).
+
 ## How to get it
 
 ``` bash
@@ -20,7 +24,7 @@ npm install
 
 the dependencies will be installed in the `node_modules` folder.
 
-The `src` folder contains a file for each directive, plus a file for the module itself. The `test/unit` folder contains a [Jasmine](http://jasmine.github.io/) test for each directive. [Karma](http://karma-runner.github.io/) is used to run these tests:
+The `src` folder contains a file for each directive, plus a file for the module itself. The `test/unit` folder contains a [Jasmine](http://jasmine.github.io/) unit test for each directive. [Karma](http://karma-runner.github.io/) is used to run these tests:
 
 ``` bash
 karma start karma-conf.js
@@ -42,7 +46,7 @@ if you just want to run the tests. This is roughly the same as running the test 
 
 The output of the build will be in the `dist` folder, both the minified (`angular-uploads.min.js`) and the un-minified versions (`angular-uploads.js`).
 
-Finally, in the `demo` folder you'll finde an example-app for each directive. You may want to take a look at these apps. To avoid failures related to browsers policies about pages served from `file:///`, it's better to use a local HTTP server. Just type from the project root folder:
+Finally, in the `demo` folder you'll find an example-app for each directive. You may want to take a look at these apps. To avoid failures related to browsers policies about pages served from `file:///`, it's better to use a local HTTP server. Just type from the project root folder:
 
 ``` bash
 node_modules/http-server/bin/http-server
@@ -84,7 +88,7 @@ The directives in the `angular-uploads` package are:
 
 ### What `msl-file-input` and `msl-folder-input` do
 
-`msl-file-input` and `msl-folder-input` _transform_ an ordinary container element (e.g. a `div` or a `button`) into a file selection component, just like `<input type="file">`, but allow for better CSS styling ([there are no
+`msl-file-input` and `msl-folder-input` turn an ordinary container element (e.g. a `div` or a `button`) into a file selection component, just like `<input type="file">`, but allow for better CSS styling ([there are no
 elegant ways](http://developer.telerik.com/featured/comprehensive-guide-styling-file-inputs/) to customize the look of `<input type="file">`). `msl-file-input` is used to select files. You can select more
 than one file if you also use the `multiple` attribute along with the directive. `msl-folder-input` is for folder
 selection, i.e. to select all files inside a folder. _This works only on Google Chrome_. On other browsers the
@@ -94,7 +98,7 @@ selection, i.e. to select all files inside a folder. _This works only on Google 
 
 `msl-dnd-file-input` and `msl-dnd-folder-input` also turn ordinary container elements into file selection components, but they work through drag and drop. `msl-dnd-file-input` accepts mutiple files.
 `msl-dnd-folder-input` recursively select files inside the folders that you drag and drop. _It works only
-on Google Chrome_. In the other browsers `msl-dnd-folder-input` will behave just like `msl-dnd-file-input`.
+on Google Chrome_. On other browsers `msl-dnd-folder-input` will behave just like `msl-dnd-file-input`.
 
 ### How to use `msl-file-input`, `msl-folder-input`, `msl-dnd-file-input` and `msl-dnd-folder-input`
 
@@ -120,7 +124,7 @@ $scope.myHandler = function (files) {
 ### What `msl-dnd-item` and `msl-dnd-target` do
 
 `msl-dnd-item` makes an element _draggable_, and allows to _link_ that element to a scope variable.
-`msl-dnd-target` allow to specify a handler function (exposed through your scope) that will be invoked
+`msl-dnd-target` allows to specify a handler function (exposed through your scope) that will be invoked
 when the `msl-dnd-item` will be dropped on that `msl-dnd-target`. This function will receive as an
 argument the same variable linked to the `msl-dnd-item`.
 
@@ -145,7 +149,11 @@ $scope.myHandler = function (arg) {
 }
 ```
 
-#### Additional notes
+### Styling on drag over
+
+On drag over `msl-dnd-folder-input` and `msl-dnd-target` will apply a `.msl-drag-over` class for styling purposes. A more elegant solution will be provided in future by [CSS Selectors Level 4](https://www.w3.org/TR/selectors4/#drag-pseudos).
+
+### Additional notes
 
 All directives throw an error if you don't provide the required scope variable / handler function, or if
 you provide something that doesn't exist in your scope.
