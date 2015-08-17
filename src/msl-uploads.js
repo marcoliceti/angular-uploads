@@ -1,1 +1,0 @@
-var msl_upload = angular.module('msl.uploads', []);

@@ -1,30 +1,28 @@
 {
-  "name": "angular-uploads",
+  "name": "angular-uploads-showcase",
   "version": "1.0.0",
-  "description": "A bunch of AngularJS directives for beautiful upload UIs.",
+  "description": "Showcase for angular-uploads",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/marcoliceti/angular-uploads.git"
   },
+  "keywords": [
+    "angular",
+    "upload",
+    "uploads"
+  ],
   "author": "Marco Liceti",
   "license": "MIT",
-  "keywords": ["angular", "upload", "uploads"],
+  "bugs": {
+    "url": "https://github.com/marcoliceti/angular-uploads/issues"
+  },
+  "homepage": "https://github.com/marcoliceti/angular-uploads#readme",
   "devDependencies": {
-    "angular": "^1.4.3",
-    "angular-mocks": "^1.4.3",
-    "grunt": "^0.4.5",
-    "grunt-contrib-concat": "^0.5.1",
-    "grunt-contrib-uglify": "^0.9.1",
-    "grunt-karma": "^0.12.0",
+    "angular": "^1.4.4",
+    "angular-ui-bootstrap": "^0.13.3",
+    "angular-uploads": "^1.0.0",
+    "bootstrap": "^3.3.5",
     "http-server": "^0.8.0",
-    "jasmine-core": "^2.3.4",
-    "jasmine-jquery": "^2.1.0",
-    "jquery": "^2.1.4",
-    "karma": "^0.13.3",
-    "karma-chrome-launcher": "^0.2.0",
-    "karma-firefox-launcher": "^0.1.6",
-    "karma-ie-launcher": "^0.2.0",
-    "karma-jasmine": "^0.3.6",
-    "karma-safari-launcher": "^0.1.1"
+    "prismjs": "0.0.1"
   }
 }

@@ -1,0 +1,45 @@
+/* Required by UI Bootstrap */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+body {
+	font-family: "Open Sans Condensed", sans-serif;
+}
+
+p {
+	font-size: 20px;
+}
+
+.glyphicon.glyphicon-folder-open {
+	margin-right: 5px;
+}
+
+.row.vertical-margin {
+	margin-top: 20px;
+}
+
+.row.empty-footer {
+	margin-top: 200px;
+}
+
+[msl-dnd-folder-input].msl-drag-over {
+	border: 3px dashed rgb(127, 127, 127);
+}
+
+th.upload-status {
+	width: 25%;
+}
+
+span.uploaded-file {
+	display: inline-block;
+	margin: 5px;
+	padding: 10px;
+	border: 2px solid rgba(64, 127, 255, 1);
+	border-radius: 10px;
+	background: rgba(64, 127, 255, 0.8);
+	color: white;
+	white-space: nowrap;
+}
+
+[msl-dnd-target].msl-drag-over {
+	border: 2px solid rgb(64, 127, 255);
+}
