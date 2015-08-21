@@ -7,6 +7,15 @@ body {
 
 p {
 	font-size: 20px;
+	text-align: justify;
+}
+
+p > code {
+	font-size: 15px;
+}
+
+pre.responsive {
+	word-wrap: normal;
 }
 
 .glyphicon.glyphicon-folder-open {
