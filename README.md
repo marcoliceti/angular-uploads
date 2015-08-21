@@ -14,6 +14,12 @@ npm install angular-uploads
 
 `npm` is a package manager distributed with [Node.js](https://nodejs.org/). More info [here](https://docs.npmjs.com/).
 
+If you prefer [Bower](http://bower.io/):
+
+``` bash
+bower install msl-angular-uploads
+```
+
 ## How to develop it
 
 First of all, install the development dependencies. From the project root folder, type:
