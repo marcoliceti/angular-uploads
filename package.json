@@ -1,6 +1,6 @@
 {
   "name": "angular-uploads",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A bunch of AngularJS directives for beautiful upload UIs.",
   "repository": {
     "type": "git",
