@@ -16,13 +16,13 @@ msl_upload.directive('mslFolderInput', function () {
 				var hidden_file_input = element.children().eq(-1);
 				hidden_file_input.bind('change', function (event) {
 					var files = event.target.files;
-					scope.$apply(function () { 
+					scope.$apply(function () {
 						scope[handler](files);
 						event.target.value = null; // reset file input
 					});
 				});
 				element.bind('click', function (event) {
-					if (event.target.lastChild) event.target.lastChild.click();
+					hidden_file_input[0].click();
 				});
 			} else {
 				element.prop('disabled', true);
